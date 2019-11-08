@@ -1,0 +1,317 @@
+<HEAD>
+<TITLE>Introduction to Automata Theory, Languages, and Computation:
+Solutions for Chapter 10</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="E0F7F0">
+
+<CENTER><TABLE>
+<TR><TD><IMG SRC = "gifs/eng.arms.mini.GIF">
+<TD ALIGN = MIDDLE><FONT SIZE = 6>Introduction to Automata
+Theory, Languages, and Computation</FONT>
+</TABLE></CENTER>
+
+<A NAME = "top"></A>
+<H2 ALIGN = CENTER>Solutions for Chapter 10</H2>
+
+Revised 6/30/01.
+<P>
+
+<A HREF = "#sol101">Solutions for Section 10.1</A><P>
+<A HREF = "#sol102">Solutions for Section 10.2</A><P>
+<A HREF = "#sol103">Solutions for Section 10.3</A><P>
+<A HREF = "#sol104">Solutions for Section 10.4</A><P>
+
+<A NAME = "sol101"></A>
+<H2>Solutions for Section 10.1</H2>
+
+<H3>Exercise 10.1.1(a)</H3>
+
+The MWST would then be the line from 1 to 2 to 3 to 4.
+
+<H3>Exercise 10.1.3</H3>
+
+For every problem <I>P</I>
+in <B>NP</B> there would be some polynomial <I>p</I>
+that bounded the running time (and therefore the output length) of the
+reduction from <I>P</I> to the NP-complete problem in question.
+That would imply an algorithm for <I>P</I> that ran in time
+<I>O(p(n) + [p(n)]<SUP>log<SUB>2</SUB>p(n)</SUP>)</I>.
+The first term, <I>p(n)</I>, can be neglected.
+The exponent is <I>k log n</I> for some constant <I>k</I>.
+Moreover, <I>p(n)<SUP>k</SUP></I> is at most <I>n<SUP>k'</SUP></I> for some other constant
+<I>k'</I>.
+Thus, we can say that there would be some constant <I>c</I> such
+that problem <I>P</I> could be solved in time <I>O(n<SUP>c log<SUB>2</SUB>n</SUP>)</I>.
+
+<H3>Exercise 10.1.5(a)</H3>
+
+Given <I>(G,A,B)</I>, construct <I>G1</I> and <I>G2</I> to be <I>G</I>,
+with start symbols <I>A</I> and <I>B</I>, respectively.
+Since this transformation is essentially copying, it can be performed in
+linear time, and is therefore surely a polynomial-time reduction.
+
+<H3>Exercise 10.1.5(c)</H3>
+
+Absolutely nothing!
+Part of any NP-completeness proof is a part that shows the problem to be
+in <B>NP</B>.
+These problems are, in fact, undecidable, and therefore surely not in
+<B>NP</B>.
+
+<H3>Exercise 10.1.6(b)</H3>
+
+Test for membership in one language and then, if the input is not in the
+first, test for membership in the second.
+The time taken is no more than the sum of the times taken to recognize
+each language.
+Since both ar in <B>P</B>, then can each be recognized in polynomial
+time, and the sum of polynomials is a polynomial.
+Thus, their union is in <B>P</B>.
+
+<H3>Exercise 10.1.6(c)</H3>
+
+Let <I>L1</I> and <I>L2</I> be languages in <B>P</B>, and suppose we
+want to recognize their concatenation.
+Suppose we are given an input of length <I>n</I>.
+For each <I>i</I> between 1 and <I>n-1</I>, test whether positions 1
+through <I>i</I> holds a string in <I>L1</I>
+and positions <I>i+1</I. through <I>n</I> hold a
+string in <I>L2</I>.
+If so, accept; the input is in <I>L1L2</I>.
+If the test fails for all <I>i</I>, reject the input.
+<P>
+The running time of this test is at most
+<I>n</I> times the sum of the running
+times of the recognizers for <I>L1</I> and <I>L2</I>.
+Since the latter are both polynomials, so is the running time for the
+TM just described.
+
+<H3>Exercise 10.1.6(f)</H3>
+
+Given a polynomial-time TM <I>M</I> for <I>L</I>, we can modify <I>M</I>
+to accept the complement of <I>L</I> as follows:
+<P>
+<OL>
+<LI>
+Make each accepting state of <I>M</I> a nonaccepting state from which
+there are no moves.
+Thus, if <I>M</I> accepts, the new TM will halt without accepting.
+<P>
+<LI>
+Create a new state <I>q</I>, which is the only accepting state in the
+new TM.
+For each state-symbol combination that has no move, hte new TM enters
+state <I>q</I>, whereupon it accepts and halts.
+</OL>
+<P>
+<A HREF = "#top">Return to Top</A>
+<P>
+
+<A NAME = "sol102"></A>
+<H2>Solutions for Section 10.2</H2>
+
+<H3>Exercise 10.2.1(a)</H3>
+
+Choosing <I>x = y = z = 1</I> makes the expression satisfiable.
+Thus, the expression is in SAT.
+
+<H3>Exercise 10.2.2(a)</H3>
+
+There are actually only three distinct Hamilton circuits, once we account
+for the differences in direction and differences in starting point.
+These three circuits are (1,2,3,4), (1,3,2,4), and (1,3,4,2).
+We can express the existence of one of these three circuits (using the
+simplified notation of Section 10.3) by:
+<I>x12x23x34x14 + x13x23x24x14 + x13x34x24x12</I>.
+<P>
+<A HREF = "#top">Return to Top</A>
+<P>
+
+<A NAME = "sol103"></A>
+<H2>Solutions for Section 10.3</H2>
+
+<H3>Exercise 10.3.1(a)</H3>
+
+In what follows, <I>[-x]</I> stands for x-bar, the complement of
+<I>x</I>.
+We'll begin by using the construction to put it into CNF.
+<I>xy</I> is already the product of clauses <I>(x)(y)</I>, and
+<I>[-x]z</I> is the product of clauses <I>([-x])(z)</I>.
+When we use the OR construction to combine these, we get
+<I>(x+u)(y+u)([-x]+[-u])(z+[-u])</I>.
+<P>
+Now, to put this expression into 3-CNF, we have only to expand the four
+clauses, each of which has only two literals, by introducing four new
+variables and doubling the number of clauses.
+The result:
+<I>(x+u+v1)(x+u+[-v1])(y+u+v2)(y+u+[-v2])([-x]+[-u]+v3)([-x]+[-u]+[-v3])(z+[-u]+v4)(z+[-u]+[-v4])</I>.
+
+<H3>Exercise 10.3.3(a)</H3>
+
+It is satisfiable.
+Let any two variables be assigned TRUE, say <I>x1</I> and <I>x2</I>, and
+let the other two variables be assigned FALSE.
+Then in any set of three variables, there must be at least one true and
+at least one false.
+Thus, none of the clauses can be false.
+<P>
+<A HREF = "#top">Return to Top</A>
+<P>
+
+<A NAME = "sol104"></A>
+<H2>Solutions for Section 10.4</H2>
+
+<H3>Exercise 10.4.1</H3>
+
+For part (a): There are triangles (3-cliques), such as {1,2,3}.
+However, there is no 4-clique, since there are only 4 nodes, and one
+edge is missing.
+Thus <I>k = 3</I> is the answer.
+<P>
+For part (b): All pairs of nodes must have an edge between them, and the
+number of pairs of <I>k</I> nodes is <I>k choose 2</I>, or
+<I>k(k-1)/2</I>.
+<P>
+For part (c): We reduce NC to CLIQUE as follows.
+Suppose we are given an instance <I>(G,k)</I> of NC.
+Construct the instance <I>(G',n-k)</I> of CLIQUE, where <I>n</I> is the
+total number of nodes of <I>G</I>, and <I>G'</I> is <I>G</I> with the
+set of edges complemented; that is, <I>G'</I> has edge <I>(u,v)</I> if
+and only if <I>G</I> does not have that edge.
+<P>
+We must show that <I>G</I> has a node cover of size <I>k</I> if and
+only if <I>G'</I> has a clique of size <I>n-k</I>.
+First, let <I>C</I> be a node cover of <I>G</I> of size <I>k</I>.
+We claim that <I>C'</I>, the complement of the nodes in <I>C</I>, is a
+clique in <I>G'</I> of size <I>n-k</I>.
+Surely <I>C'</I> is of size <I>n-k</I>.
+Suppose it is not a clique.
+Then there is a pair of nodes <I>(u,v)</I> that do not have an edge in
+<I>G'</I>.
+Thus this edge is in <I>G</I>.
+But neither <I>u</I> nor <I>v</I> is in <I>C</I>, contradicting the
+assumption that is is a node cover.
+<P>
+Conversely, if <I>C'</I> is a clique of size <I>n-k</I> in <I>G'</I>,
+then we claim that <I>C</I> the complement of <I>C'</I>, is a node cover
+of size <I>k</I> in <I>G</I>.
+The argument is similar:
+if <I>(u,v)</I> is an edge of <I>G</I> not covered by <I>C</I>, then
+both <I>u</I> and <I>v</I> are in <I>C'</I>, but the edge <I>(u,v)</I>
+is not in <I>G'</I>, contradicting the assumption that <I>C'</I> is a
+clique.
+
+<H3>Exercise 10.4.2</H3>
+
+For each clause, we add one node, and connect it so that it can only be
+colored in one of the <I>n+1</I> available colors if the clause is made
+true.
+Suppose the clause consists of literals with variables <I>xi, xj</I>,
+and <I>xk</I>, possibly negated.
+The node for the clause is connected to:
+<P>
+<OL>
+<LI>
+<I>xm</I> for all <I>m</I> = 0, 1,..., <I>n</I>, except for <I>i, j</I>,
+and <I>k</I>.
+Thus, the only possible colors for the nodes are the ones used for its
+literals.
+<P>
+<LI>
+If the literal with <I>xi</I> is positive (not negated), connect the
+node for the clause to the node for <I>xI</I>.
+If the literal is negated, connect the node for the clause to the node
+for <I>xi</I>-bar.
+<P>
+<LI>
+Connect to nodes for <I>xj</I> and <I>xk</I>, analogously.
+</OL>
+<P>
+Now, if at least one of the literals of the clause is made true by the
+assignment where the color <I>c0</I> corresponds to truth, then that
+literal will not be colored with the color for its variable, and we can
+use that color for the clause's node.
+However, if the truth assignment makes all three literals false, then
+the clause's node is connected to nodes of all <I>n+1</I> colors, and we
+cannot complete the coloring.
+Thus, coloring the complete graph with <I>n+1</I> colors is possible if
+and only if there is a satisfying truth assignment for the 3-CNF
+expression.
+
+<H3>Exercise 10.4.3(a)</H3>
+
+Yes; a Hamilton circuit can be found by going around the inner circle,
+say from 11 to 20, clockwise, then to 10, around the outer circle
+counterclockwise, to 1, and then back to 11.
+
+<H3>Exercise 10.4.4(f)</H3>
+
+Let <I>(G,k)</I> be an instance of the clique problem, and suppose
+<I>G</I> has <I>n</I> nodes.
+We produce an instance of the half-clique problem, as follows:
+<P>
+<OL>
+<LI>
+If <I>k = n/2</I>, just produce <I>G</I>.
+Note that <I>G</I> has a half-clique if and only if it has a clique of
+size <I>k</I>. in this case.
+<P>
+<LI>
+If <I>k &gt; n/2</I>, add <I>2k - n</I> isolated nodes (nodes with no
+incident edges).
+The resulting graph has a half-clique (whose size must be
+<I>(n + (2k-n))/2
+= 2k</I>, if and only if <I>G</I> has a clique of size <I>k</I>.
+<P>
+<LI>
+If <I>k &lt; n/2</I>, add <I>n - 2k</I> nodes, and connect them in all
+possible ways to each other and to the original nodes of <I>G</I>.
+The new graph thus has <I>2(n-k)</I> nodes.
+The new nodes, plus a clique of size <I>k</I> in <I>G</I> form a clique
+of size <I>(n-2k) + k = n-k</I>, which is half the number of nodes in
+the new graph.
+Conversely, if the new graph has a half-clique, then it must include at
+least <I>(n-k) - (n-2k) = k</I> nodes of the graph <I>G</I>, implying
+that <I>G</I> has a clique of size <I>k</I>.
+</OL>
+<P>
+These steps complete a reduction of CLIQUE to HALF-CLIQUE.
+It is evidently performable in polynomial time, since the number of new
+nodes and edges is at most the square of the original number of nodes,
+and the rules for adding nodes and edges are simple to carry out.
+
+<H3>Exercise 10.4.5(a)</H3>
+
+Following the hint, pick any node <I>x</I> in graph <I>G</I>.
+Add a duplicate node <I>y</I> that is adjacent to exactly those nodes
+to which <I>x</I> is adjacent.
+Then, add new nodes <I>u</I> and <I>v</I> that are adjacent to <I>x</I>
+and <I>y</I>, respectively, and no other nodes.
+Call the resulting graph <I>G'</I>.
+<P>
+We claim <I>G'</I> has a Hamilton path if and only if <I>G</I> has a
+Hamilton circuit.
+If <I>G</I> has a Hamilton circuit, the following is a Hamilton path in
+<I>G'</I>:
+start at <I>u</I>, go to <I>x</I>, follow the Hamilton circuit, but end
+at <I>y</I> instead of <I>x</I>, and then go to <I>v</I>.
+<P>
+If <I>G'</I> has a Hamilton path, it must start at <I>u</I> and end at
+<I>v</I>, or vice-versa (which is really the same path.
+Moreover, the path must go from <I>x</I. to <I>y</I>, visiting all the
+nodes of <I>G</I> as it does.
+Thus, if we replace <I>y</I> by <I>x</I> along this path, we get a
+Hamilton circuit in <I>G</I>.
+
+<H3>Exercise 10.4.5(c)</H3>
+
+A spanning tree with two leaf nodes is a Hamilton path.
+Thus, the Hamilton path problem reduces to the question of whether a
+graph has a spanning tree with only 2 leaf nodes.
+Surely, then, Hamilton path reduces to the more general problem stated
+in the question, where the number of leaf nodes is a parameter of the
+problem.
+<P>
+<A HREF = "#top">Return to Top</A>
+</BODY>
